@@ -2,15 +2,16 @@ const submitNoteBtn = document.getElementById('submitNote');
 const notesDiv = document.getElementById('notes');
 const noteTextArea = document.getElementById('noteText');
 
-const date = new Date().toLocaleDateString();
-
 const addNote = () => {
+  const date = new Date();
+  const time = `${date.toLocaleDateString()} | ${date.toLocaleTimeString()}`;
+
   const note = document.createElement('div');
   const editBtn = document.createElement('button');
   const deleteBtn = document.createElement('button');
 
   note.className = 'note';
-  note.innerHTML = `${date} <br><br> ${noteTextArea.value} <br><br>`;
+  note.innerHTML = `${time} <br><br> ${noteTextArea.value} <br><br>`;
 
   editBtn.innerText = 'Edit';
   editBtn.className = 'noteForm';
@@ -30,6 +31,9 @@ const editNote = (note) => {
   submitNoteBtn.innerText = 'Edit note';
 
   submitNoteBtn.onclick = () => {
+    const date = new Date();
+    const time = `${date.toLocaleDateString()} | ${date.toLocaleTimeString()}`;
+
     const editBtn = document.createElement('button');
     const deleteBtn = document.createElement('button');
 
@@ -42,7 +46,7 @@ const editNote = (note) => {
     editBtn.onclick = () => editNote(note);
     deleteBtn.onclick = () => deleteNote(note, deleteBtn, editBtn);
 
-    note.innerHTML = `${date} <br><br> ${noteTextArea.value} <br><br>`;
+    note.innerHTML = `${time} <br><br> ${noteTextArea.value} <br><br>`;
 
     note.appendChild(editBtn);
     note.appendChild(deleteBtn);
